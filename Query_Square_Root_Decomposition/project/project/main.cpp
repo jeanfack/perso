@@ -80,29 +80,28 @@ template<size_t MAX_N, size_t MAX_Q> static void computeQSRD(const unsigned long
 
         while (currR < R)
         {
+            ++currR;
             currSum += a[currR];
-            currR++;
         }
 
         while (currL < L)
         {
             ASSERT(currSum >= a[currL]);
-
             currSum -= a[currL];
-            currL++;
+            ++currL;
         }
     
         while (currL > L)
         {
-            currSum += a[currL - 1];
-            currL--;
+            --currL;
+            currSum += a[currL];
         }
     
         while (currR > R)
         {
             ASSERT(currSum >= a[currR]);
             currSum -= a[currR];
-            currR--;
+            --currR;
         }
 
         ASSERT(Assert::isValide(currL, L, currR, R, currSum, a));
