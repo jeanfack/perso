@@ -2,12 +2,12 @@
 #include <utility>   // pair
 #include <numeric>   // accumulate
 #include <algorithm> // for_each
-#include <iterator>  // begin,end
-#include <tuple>     // tuple
+
 
 using namespace std;
 
-//#define __DEBUG__
+
+#define __DEBUG__
 
 #ifdef __DEBUG__
 #include <cassert>   // assert
@@ -17,13 +17,6 @@ using namespace std;
 #endif
 
 
-////////////////////////////////////////////////////////////////
-//
-// Query Square Root Decomposition (also known as MO's lgorithm)
-//
-// https://www.geeksforgeeks.org/mos-algorithm-query-square-root-decomposition-set-1-introduction/
-// 
-////////////////////////////////////////////////////////////////
 struct Qry
 {
     Qry() : L(0), R(0), pos(0) {}
@@ -32,23 +25,30 @@ struct Qry
     unsigned long L, R, pos;
 };
 
-template<size_t MAX_N, size_t MAX_Q> static void computeNaive(const unsigned long(&a)[MAX_N], [[maybe_unused]] unsigned long N, const pair<unsigned long, unsigned long>(&q)[MAX_Q], unsigned long Q, unsigned long(&r)[MAX_Q])
+template<size_t MAX_N, size_t MAX_Q, typename T, class T_ADD> static void computeNaive(const unsigned long(&a)[MAX_N], [[maybe_unused]] unsigned long N, const pair<unsigned long, unsigned long>(&q)[MAX_Q], unsigned long Q, T(&r)[MAX_Q], T_ADD add)
 {
 
     for (unsigned long i = 0; i < Q; ++i)
     {
         Qry qry(q[i].first, q[i].second, i, N);
-        r[i] = accumulate(a + qry.L, a + qry.R + 1, 0);
+        r[i] = accumulate(a + qry.L + 1, a + qry.R + 1, a[qry.L], add);
     }
 }
 
-template<size_t MAX_N, size_t MAX_Q> static void computeQSRD(const unsigned long(&a)[MAX_N], unsigned long N, const pair<unsigned long, unsigned long>(&q)[MAX_Q], unsigned long Q, unsigned long(&r)[MAX_Q])
+////////////////////////////////////////////////////////////////
+//
+// Query Square Root Decomposition (also known as MO's lgorithm)
+//
+// https://www.geeksforgeeks.org/mos-algorithm-query-square-root-decomposition-set-1-introduction/
+// 
+////////////////////////////////////////////////////////////////
+template<size_t MAX_N, size_t MAX_Q, typename T, class T_ADD, class T_SUB> static void computeQSRD(const unsigned long(&a)[MAX_N], unsigned long N, const pair<unsigned long, unsigned long>(&q)[MAX_Q], unsigned long Q, T(&r)[MAX_Q], T_ADD add, T_SUB sub)
 {
     struct Assert
     {
-        static bool isValide(unsigned long currL, unsigned long L, unsigned long currR, unsigned long R, unsigned long currSum, const unsigned long(&a)[MAX_N])
+        static bool isValide(unsigned long currL, unsigned long L, unsigned long currR, unsigned long R, unsigned long currSum, const unsigned long(&a)[MAX_N], T_ADD add)
         {
-            return currL == L && currR == R && currSum == accumulate(a + L, a + R + 1, 0ul);
+            return currL == L && currR == R && currSum == accumulate(a + L + 1, a + R + 1, a[L], add);
         }
     };
 
@@ -71,8 +71,9 @@ template<size_t MAX_N, size_t MAX_Q> static void computeQSRD(const unsigned long
             return xLB != yLB ? xLB < yLB : x.R < y.R;
         });
 
-    unsigned long currL = 0, currR = 0, currSum = a[0];
-    ASSERT(Assert::isValide(currL, 0, currR, 0, currSum, a));
+    unsigned long currL = 0, currR = 0;
+    T currSum = a[0];
+    ASSERT(Assert::isValide(currL, 0, currR, 0, currSum, a, add));
 
     for (unsigned long i = 0; i < Q; i++)
     {
@@ -81,30 +82,30 @@ template<size_t MAX_N, size_t MAX_Q> static void computeQSRD(const unsigned long
         while (currR < R)
         {
             ++currR;
-            currSum += a[currR];
+            currSum = add(currSum,a[currR]);
         }
 
         while (currL < L)
         {
             ASSERT(currSum >= a[currL]);
-            currSum -= a[currL];
+            currSum = sub(currSum, a[currL]);
             ++currL;
         }
     
         while (currL > L)
         {
             --currL;
-            currSum += a[currL];
+            currSum = add(currSum, a[currL]);
         }
     
         while (currR > R)
         {
             ASSERT(currSum >= a[currR]);
-            currSum -= a[currR];
+            currSum = sub(currSum, a[currR]);
             --currR;
         }
 
-        ASSERT(Assert::isValide(currL, L, currR, R, currSum, a));
+        ASSERT(Assert::isValide(currL, L, currR, R, currSum, a, add));
     
         r[qry[i].pos] = currSum;
     }
@@ -127,8 +128,11 @@ int main()
     const pair<unsigned long, unsigned long> q[3] = { {0, 4}, {1, 3}, {2, 4} };
     unsigned long r1[3], r2[3];
 
-    computeNaive(a, 9, q, 3, r1);
-    computeQSRD(a, 9, q, 3, r2);
+    auto add = [](unsigned long a, unsigned long b) { return a + b; };
+    auto sub = [](unsigned long a, unsigned long b) { return a - b; };
+
+    computeNaive(a, 9, q, 3, r1, add);
+    computeQSRD(a, 9, q, 3, r2, add, sub);
 
     ASSERT(equal(r1, r1 + 3, r2));
 
