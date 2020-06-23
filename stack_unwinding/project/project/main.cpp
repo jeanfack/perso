@@ -30,7 +30,9 @@ int main()
     catch (int i)
     {
         cout << "exception:" << i << endl;
+        terminate(); // une exception non géré appel terminate() qui appel abort().
     }
 
-    cout << "fin" << endl;
+    cout << "fin" << endl; // jamais affiché en cas d'exception
+    // Le destructeur de "A" n'est pas jamais appelé en cas d'exception
 }
