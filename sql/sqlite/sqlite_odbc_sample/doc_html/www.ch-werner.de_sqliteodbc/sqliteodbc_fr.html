@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        <!--OL { counter-reset: item; padding-left: 10px; }-->
+        LI { display: block }
+        LI:before { content: counters(item, ".") " "; counter-increment: item }
+    </style>
+    
+    <head>
+        <title>Comment installer le driver ODBC SQLite ?</title>
+    </head>
+    <body>
+        <h1>Comment installer le driver ODBC SQLite ?</h1>
+        
+        <ol>
+            <li>
+                Coonfiguration 32 bits:
+                <ol> 
+                    <li>
+                        <tt>sqlitodbc.exe</tt>:
+                        <ol> 
+                            <li>Télécharger <tt>sqlitodbc.exe</tt> de <a href="http://www.ch-werner.de/sqliteodbc/">http://www.ch-werner.de/sqliteodbc/</a>.</li>
+                            <li>Copier <tt>sqlitodbc.exe</tt> dans <tt>C:\SQLite_HowTo_sample\www.ch-werner.de_sqliteodbc</tt>.</li>
+                            <li>Executer <tt>C:\SQLite_HowTo_sample\www.ch-werner.de_sqliteodbc\sqlitodbc.exe</tt>. Cela va installer le driver.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <tt>odbcad32.exe</tt>:
+                        <ol> 
+                            <li>Lancer <tt>C:\Windows\<b><font color="red">syswow64</font></b>\odbcad32.exe</tt>.</li>
+                            <li>Sélectionner l'onglet "Pilotes ODBC".</li>
+                            <li>Vérifier que le pilote "SQLite3 ODBC Driver" est présent.</li>
+                            <li>Cliquer sur "OK".<br><br><img src=".\img\1_7_syswow64_odbcad32__Polites_ODBC__OK.png"><br><br></li>
+                        </ol>
+                    </li>
+                </ol> 
+            </li>
+            <li>
+                Coonfiguration 64 bits:
+                <ol> 
+                    <li>
+                        <tt>sqlitodbc_w64.exe</tt>:
+                        <ol> 
+                            <li>Télécharger <tt>sqlitodbc_w64.exe</tt> de <a href="http://www.ch-werner.de/sqliteodbc/">http://www.ch-werner.de/sqliteodbc/</a>.</li>
+                            <li>Copier <tt>sqlitodbc_w64.exe</tt> dans <tt>C:\SQLite_HowTo_sample\www.ch-werner.de_sqliteodbc</tt>.</li>
+                            <li>Executer <tt>C:\SQLite_HowTo_sample\www.ch-werner.de_sqliteodbc\sqlitodbc_w64.exe</tt>. Cela va installer le driver.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <tt>odbcad32.exe</tt>:
+                        <ol> 
+                            <li>Lancer <tt>C:\Windows\<b><font color="red">system32</font></b>\odbcad32.exe</tt>.</li>
+                            <li>Sélectionner l'onglet "Pilotes ODBC".</li>
+                            <li>Vérifier que le pilote "SQLite3 ODBC Driver" est présent.</li>
+                            <li>Cliquer sur "OK".<br><br><img src=".\img\2_7_system32_odbcad32__Polites_ODBC__OK.png"><br><br></li>
+                        </ol>
+                    </li>
+                </ol> 
+            </li>
+        </ol>
+        
+    </body>
+</html>

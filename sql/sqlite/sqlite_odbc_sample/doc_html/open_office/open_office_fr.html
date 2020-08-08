@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        <!--OL { counter-reset: item; padding-left: 10px; }-->
+        LI { display: block }
+        LI:before { content: counters(item, ".") " "; counter-increment: item }
+    </style>
+    
+    <head>
+        <title>Comment configurer une source de donnée SQLite sur Open Office Calc ?</title>
+    </head>
+    
+    <body>
+        <h1>Comment configurer une source de donnée SQLite sur Open Office Calc ?</h1>
+        
+        <ol>        
+            <li>Lancer Open Office Base.<br><br><img src=".\img\2_2_1_1_OpenOffice_Base__Chercher.png"><br><br></li>
+            <li>
+                Dans la fenêtre Assistant Base de données :
+                <ol>
+                
+                    <li>
+                        Etape 1: Sélectionner une base de donnée
+                        <ol>
+                            <li>Selectionner "Se connecter à une base existante"</li>  
+                            <li>Selectionner "ODBC"</li>
+                            <li>Cliquer sur "Suivant"<br><br><img src=".\img\2_1_1_OpenOffice_Base__Assistant_BDD__Etape1__Ouvrir.png"><br><br></li>
+                        </ol>
+                    </li>
+                    
+                    <li>
+                        Etape 2: Paramétrer une connexion ODBC
+                        <ol>
+                            <li>Cliquer sur "Parcourir".<br><br><img src=".\img\2_2_1_OpenOffice_Base__Assistant_BDD__etape2__Ouvrir.png"><br><br></li>  
+                            <li>
+                                Dans la fenêtre Source de données :
+                                <ol>
+                                    <li>Cliquer sur "Gérer".<br><br><img src=".\img\2_2_1_1_OpenOffice_Base__Source_de_donnees__Ouvrir.png"><br><br></li>
+                                    
+                                    <li>
+                                        Dans la fenêtre "Administrateur de source de données ODBC (32 bits) :
+                                        <ol>
+                                            <li>Selectionner l'onglet "Sources de données utilisateur".</li>
+                                            <li>Cliquer sur "Ajouter".<br><br><img src=".\img\2_2_1_2_2_Administrateur_ODBC_32bits__Source_de_donnees_utilisateur__Ouvrir.png"><br><br></li>
+                                            
+                                            <li>
+                                                Dans la fenêtre Créer une nouvelle source de données :<br><br><img src=".\img\2_2_1_2_3_1_Administrateur_ODBC_32bits__Creer_une_nouvelle_source_de_donnees__Ouvrir.png"><br><br>
+                                                <ol>
+                                                    <li>Selectionner "SQLite3 ODBC Driver".</li>
+                                                    <li>Cliquer sur "Terminer".<br><br><img src=".\img\2_2_1_2_3_3_Administrateur_ODBC_32bits__Creer_une_nouvelle_source_de_donnees__Terminer.png"><br><br></li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                Dans la fenêtre SQLite3 ODBC DSN Configuration :<br><br><img src=".\img\2_2_1_2_3_4_Administrateur_ODBC_32bits__SQLite3_ODBC_DSN_Configuration__Ouvrir.png"><br><br>
+                                                <ol>
+                                                    <li>Saisir dans Data Source Name: "ex1_sqlite3_32bits_sync_NORMAL".</li>
+                                                    <li>Parcourir dans Database Name: "C:\SQLite_HowTo_sample\scripts\ex1.db".</li>
+                                                    <li>Selectionner dans Sync Mode: "NORMAL".</li>
+                                                    <li>Cliquer sur "OK".<br><br><img src=".\img\2_2_1_2_3_8_Administrateur_ODBC_32bits__SQLite3_ODBC_DSN_Configuration__OK.png"><br><br></li>
+                                                </ol>                                                
+                                            </li>
+                                        </ol>
+                                        <li>Cliquer sur "OK"<br><br><img src=".\img\2_2_1_2_6_Administrateur_ODBC_32bits__Source_de_donnees_utilisateur__Ok.png"><br><br></li>
+                                    </li>
+                                </ol> 
+                                <li>Selectionner "ex1_sqlite3_32bits_sync_NORMAL".</li>
+                                <li>Cliquer sur "OK".<br><br><img src=".\img\2_2_1_5_OpenOffice_Base__Source_de_donnees__Ok.png"><br><br></li>                               
+                            </li>
+                            <li>Cliquer sur "Suivant".<br><br><img src=".\img\2_2_2_OpenOffice_Base__Assistant_BDD__etape2__Suivant.png"><br><br></li>
+                        </ol>
+                    </li>
+                    
+                    <li>
+                        Etape 3: Paramétrer l'authentification de l'utilisateur<br><br><img src=".\img\2_3_1_OpenOffice_Base__Assistant_BDD__etape3__Ouvrir.png"><br><br>
+                        <ol>
+                            <li>Cliquer sur "Tester la connexion".</li>
+                            <li>
+                                Dans la fenêtre "Test de connexion" :
+                                <ol>
+                                    <li>Vérifier que la connexion est établie.</li>
+                                    <li>Cliquer "OK".<br><br><img src=".\img\2_3_2_2_OpenOffice_Base__Assistant_BDD__Test_Connexion__Ok.png"><br><br></li>
+                                </ol>
+                            </li>
+                            <li>Cliquer sur "Suivant".<br><br><img src=".\img\2_3_3_OpenOffice_Base__Assistant_BDD__etape3__Suivant.png"><br><br></li>
+                        </ol>
+                    </li>
+                    
+                    <li>
+                        Etape 4: Enregistrer et continuer<br><br><img src=".\img\2_4_1_OpenOffice_Base__Assistant_BDD__etape4__Ouvrir.png"><br><br>
+                        <ol>
+                            <li>Selectionner "Oui, je souhaite que l'assistant référence la base de données".</li>
+                            <li>Cocher "Ouvrir la base de données pour édition".</li>
+                            <li>Cliquer sur "Terminer".<br><br><img src=".\img\2_4_1_OpenOffice_Base__Assistant_BDD__etape4__Terminer.png"><br><br></li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        Dans le fenêtre Enregistrer sous
+                        <ol>
+                            <li>Parcourir: "C:\SQLite_HowTo_sample\scripts\".</li>
+                            <li>Saisir dans nom de fichier: "ex1_sqlite3_32bits_sync_NORMAL.odb".</li>
+                            <li>Cliquer "Enregistrer".<br><br><img src=".\img\2_4_6_OpenOffice_Base__Assistant_BDD__etape4__Enregistrer.png"><br><br></li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+
+            <li> Dans la fenêtre "ex1_sqlite3_32bits_sync_NORMAL.odb - OpenOffice Base" :<br><br><img src=".\img\3_1_OpenOffice_Base__Ouvrir.png"><br><br>
+                <ol>
+                    <li>Selectionner "Tables" dans la zone "Base de données".</li>
+                    <li>Double cliquer sur la table "USER".<br><br><img src=".\img\3_3_1_OpenOffice_Base__Table_USER__Ouvrir.png"><br><br></li>
+                </ol>
+            </li>
+            
+            <li> Comment créer dans Calc un tableau croisé à partir de la base de donnée ?
+                <ol>
+                    <li>Lancer Open Office Calc.</li>
+                    <li>Créer un nouveau classeur "Sans nom 1".<br><br><img src=".\img\4_1_OpenOffice_Calc__Ouvrir.png"><br><br></li>
+                    <li>Enregistrer ce classeur sous C:\SQLite_HowTo_sample\scripts\ex1.ods.</li>
+                    <li>Selectionner la feuille "Feuille1".</li>
+                    <li>Aller dans Données->Tableau croisé->Créer.<br><br><img src=".\img\4_3_OpenOffice_Calc__Creer.png"><br><br></li>
+                    <li>
+                        Dans la fentre "Selectionner la source" :<br><br><img src=".\img\4_4_1_OpenOffice_Calc__Selectionner_la_source__Ouvrir.png"><br><br>
+                        <ol>
+                            <li>Selectionner "Source de données enregistrée sous OpenOffice".</li>
+                            <li>Cliquer sur "OK".<br><br><img src=".\img\4_4_3_OpenOffice_Calc__Selectionner_la_source__OK.png"><br><br></li>
+                        </ol>
+                    </li>
+                    <li>
+                        Dans la fenêtre Tableau croisé :<br><br><img src=".\img\4_6_1_OpenOffice_Calc__Tableau_Croise__Ouvrir.png"><br><br>
+                        <ol>
+                            <li>Deplacer les champs 'ID' et 'NAME' dans "Champs de ligne".</li>
+                            <li>Cliquer sur "OK".<br><br><img src=".\img\4_6_3_OpenOffice_Calc__Tableau_Croise__OK.png"><br><br></li>
+                        </ol>
+                    </li>
+                    <li>Afficher la feuille "Feuille1".<br><br><img src=".\img\4_7_OpenOffice_Calc__Tableau_Croise__Afficher.png"><br><br></li>
+                </ol>
+            </li>
+            
+            <li> Comment actualiser le tableau croisé ?
+                <ol>
+                    <li>Lancer <tt>cmd.exe</tt> dans <tt>C:\SQLite_HowTo_sample\scripts</tt>.</li>
+                    <li>Executer <tt>ex1.INSERT.Roberto.cmd</tt>.<br><br><img src=".\img\5_1.cmd.INSERT_Roberto__ANNOTATION.png"><br><br></li>
+                    <li>Actualiser le tableau croisé.<br><br><img src=".\img\5_2_OpenOffice_Calc__Tableau_Croise__Actualiser__Avant.png"><br><br></li>
+                    <li>Observer l'insertion du nouvelle enregistrement.<br><br><img src=".\img\5_3_OpenOffice_Calc__Tableau_Croise__Actualiser__Afficher__ANNOTATION.png"><br><br></li>
+                </ol>            
+            </li>
+            
+        </ol>
+        
+    </body>
+</html>

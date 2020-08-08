@@ -1,0 +1,2 @@
+.echo on
+.read ./sql/USER.CREATE.sql
