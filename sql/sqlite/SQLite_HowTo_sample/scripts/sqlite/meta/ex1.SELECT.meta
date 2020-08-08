@@ -1,0 +1,4 @@
+.echo on
+.headers on
+.mode column
+.read ./sql/USER.SELECT.sql

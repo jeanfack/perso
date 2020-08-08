@@ -1,0 +1,2 @@
+.echo on
+.read ./sql/USER.INSERT.Charlie.Chaplin.sql

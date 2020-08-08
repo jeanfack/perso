@@ -1,0 +1,2 @@
+.echo on
+.read ./sql/USER.DELETE.Charlie.Chaplin.sql
