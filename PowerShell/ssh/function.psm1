@@ -68,3 +68,41 @@ function stopSsh {
   Stop-Service -Name "sshd"
   Stop-Service -Name "ssh-agent"
 }
+
+
+function installModule {
+  param([string]$name)
+
+  if (!(Get-Module -ListAvailable -Name "$name")) {
+    Install-Module -Force -Name "$name"
+  }
+}
+
+
+function installModulePosh {
+  installModule("Posh-SSH")
+}
+
+
+function installModuleAD {  
+  Import-Module "ActiveDirectory"
+}
+
+function isInstalledModule {
+  param([string]$name)
+
+  if (Get-InstalledModule -Name "$name") {
+    Write-Output "$name is Installed"
+  }
+  else {
+    Write-Output "$name is Uninstalled"
+  }
+}
+
+function isInstalledModulePosh {
+  return isInstalledModule("Posh-SSH")
+}
+
+function isInstalledModuleAD {
+  return isInstalledModule("ActiveDirectory")
+}

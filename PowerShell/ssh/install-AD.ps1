@@ -4,6 +4,6 @@
 Import-Module -Name .\function -Force
 
 
-installModulePosh
+installModuleAD
 
-isInstalledModulePosh
+isInstalledModuleAD

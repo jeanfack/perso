@@ -1,0 +1,3 @@
+dummy pipo A 56
+dummy pipo B 45
+dummy pipo C 12
